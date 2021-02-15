@@ -16,5 +16,23 @@
     "plantTitle": "Swiss Cheese plant",
     "description": "Another Retro plant, called swiss cheese becuase of the holes in the leaves",
     "price": 40.00
+  },
+  {
+    "imageName": "figus",
+    "plantTitle": "Figus Lyratha",
+    "description": "Dramatic plant, often seen in magazine photo shoots",
+    "price": 12.99
+  },
+  {
+    "imageName": "elasticia",
+    "plantTitle": "Rubber Plant",
+    "description": "Retro looking plant, would look the part in a 70's office",
+    "price": 20.00
+  },
+  {
+    "imageName": "monstera",
+    "plantTitle": "Swiss Cheese plant",
+    "description": "Another Retro plant, called swiss cheese becuase of the holes in the leaves",
+    "price": 40.00
   }
 ]
