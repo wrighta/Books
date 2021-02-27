@@ -1,4 +1,4 @@
-package com.example.plantwebapp
+package com.example.books
 
 import org.junit.Test
 

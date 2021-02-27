@@ -1,9 +1,8 @@
-package com.example.plantwebapp.ui.main
+package com.example.books.ui.main
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,18 +10,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 
-import com.example.plantwebapp.LOG_TAG
-import com.example.plantwebapp.R
-import com.example.plantwebapp.data.Plant
-import java.lang.StringBuilder
-
-import com.example.plantwebapp.databinding.MainFragmentBinding
+import com.example.books.databinding.MainFragmentBinding
 
 
 class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding : MainFragmentBinding
+    private lateinit var adapter : BookListAdapter
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(
@@ -31,18 +26,19 @@ class MainFragment : Fragment() {
     ): View {
 
         binding = MainFragmentBinding.inflate(inflater, container, false)
-
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        viewModel.plantData.observe(this, Observer
+        with(binding.recyclerView)
         {
-            val plantTitles = StringBuilder()
-            for(plant in it){
-                plantTitles.append(plant.plant)
-                    .append("\n")
-            }
+            setHasFixedSize(true)
+        }
 
-            binding.message.text = plantTitles
+        // this Fragment observes the data in the viewModel, it does not need to know where this data comes from.
+        viewModel.booksResponse?.observe(viewLifecycleOwner, Observer {
+//            // when 'it' changes it means the user object has an authentication token. I hard code the user name and password in the Repository for the login.
+//              binding.message.text = "Number of items returned " + it.totalItems + " Books" + it.items.get(1).volumeInfo.title
+            adapter = BookListAdapter(requireContext(), it.items)
+            binding.recyclerView.adapter = adapter
 
         })
 
