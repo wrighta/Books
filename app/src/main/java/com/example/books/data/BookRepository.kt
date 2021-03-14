@@ -26,14 +26,14 @@ class BookRepository  (val app: Application){
 
     init {
         // Run this in the background.
-        CoroutineScope(Dispatchers.IO).launch {
-            callLoginService()
-
-        }
+//        CoroutineScope(Dispatchers.IO).launch {
+//         //   callLoginService()
+//
+//        }
     }
 
     @WorkerThread
-    suspend fun callLoginService() {
+    suspend fun searchBooks(searchQuery : String) {
         if (networkAvailable()) {
             val retrofit = Retrofit.Builder()
                 .baseUrl(WEB_SERVICE_URL)
@@ -44,7 +44,7 @@ class BookRepository  (val app: Application){
 
 
             // getPlantData() is defined in the WebService interface, Retrofit will have implemented this function for you
-            val res  = service.simpleSearchBooks("Harry%20Potter")
+            val res  = service.simpleSearchBooks(searchQuery)
             booksResponse.postValue(res)
             Log.i("HERE", booksResponse.toString())
         }
