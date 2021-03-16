@@ -30,8 +30,11 @@ class SearchFragment : Fragment() {
 
 
 
+        // WHen the Search Button in clicked
         binding.searchButton.setOnClickListener {
             Log.i("Search", binding.searchText.text.toString() )
+            // take the search string from the binding object and send it as an argument into MainFragment
+            // note the action and the argument passed in must be defined in nav_graph
             val action = SearchFragmentDirections.actionSearchFragmentToMainFragment(binding.searchText.text.toString())
             findNavController().navigate(action)
         }

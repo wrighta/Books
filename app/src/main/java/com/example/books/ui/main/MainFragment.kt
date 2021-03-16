@@ -37,10 +37,6 @@ class MainFragment : Fragment() {
         viewModel.getBooks(args.searchQuery.toString())
 
 
-//        with(binding.recyclerView)
-//        {
-//            setHasFixedSize(true)
-//        }
 
         // this Fragment observes the data in the viewModel, it does not need to know where this data comes from.
         viewModel.booksResponse?.observe(viewLifecycleOwner, Observer {
